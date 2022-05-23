@@ -111,5 +111,5 @@ const layers = [
 },
 ];
 
-console.log(layers, width);
-module.exports = {layers}
+//console.log(layers, width);
+module.exports = {layers, width, height}
