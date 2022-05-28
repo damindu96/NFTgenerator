@@ -48,8 +48,6 @@ const getElements = (path) => {
 
 const layers = [
     {
-    id: 1,
-    name: "Background",
     location: `${dir}/background/`,
     elements: getElements(`${dir}/background/`),
     position: {x:0, y:0},
@@ -57,8 +55,6 @@ const layers = [
 },
 
 {
-    id: 2,
-    name: "Bottom lid",
     location: `${dir}/Bottom lid/`,
     elements: getElements(`${dir}/Bottom lid/`),
     position: {x:0, y:0},
@@ -66,8 +62,6 @@ const layers = [
 },
 
 {
-    id: 3,
-    name: "Eye color",
     location: `${dir}/Eye color/`,
     elements: getElements(`${dir}/Eye color/`),
     position: {x:0, y:0},
@@ -75,8 +69,6 @@ const layers = [
 },
 
 {
-    id: 4,
-    name: "Eyeball",
     location: `${dir}/Eyeball/`,
     elements: getElements(`${dir}/Eyeball/`),
     position: {x:0, y:0},
@@ -84,8 +76,6 @@ const layers = [
 },
 
 {
-    id: 5,
-    name: "Iris",
     location: `${dir}/Iris/`,
     elements: getElements(`${dir}/Iris/`),
     position: {x:0, y:0},
@@ -93,8 +83,6 @@ const layers = [
 },
 
 {
-    id: 6,
-    name: "Shine",
     location: `${dir}/Shine/`,
     elements: getElements(`${dir}/Shine/`),
     position: {x:0, y:0},
@@ -102,8 +90,6 @@ const layers = [
 },
 
 {
-    id: 7,
-    name: "Top lid",
     location: `${dir}/Top lid/`,
     elements: getElements(`${dir}/Top lid/`),
     position: {x:0, y:0},
