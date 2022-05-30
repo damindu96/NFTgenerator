@@ -2,32 +2,31 @@ const fs = require("fs");
 const width = 1000;
 const height = 1000;
 const dir = __dirname;
-
-
-
-const rarity = [
-    {key:"", val: "original"},
-    {key:"_r", val: "rare"},
-    {key:"_sr", val: "super rare"},
-    {key:"_ssr", val: "super super rare"},
+const description = "NFT GENERATOR";
+const baseImageUri = "https://hashlips/nft";
+const startEditionFrom = 1;
+const endEditionAt = 10;  
+const editionSize = 1000;
+const rarityWeights = [
+    {
+        value: "super_rare",
+        from: 1,
+        to: 1
+    },
+    {
+        value: "rare",
+        from: 2,
+        to: 4
+    },
+    {
+        value: "original",
+        from: 5,
+        to: editionSize,
+    },
 ];
-
-const addRarity = (_str) => {
-    let itemRarity;
-    rarity.forEach((r) => {
-        if (_str.includes(r.key)) {
-            itemRarity = r.val;
-        }
-    });
-    return itemRarity;
-};
-
 
 const cleanName = (_str) => {
     let name = _str.slice(0, -4);
-    rarity.forEach((r) => {
-      name = name.replace(r.key, "");
-    });
     return name;
 };
 
@@ -35,12 +34,10 @@ const getElements = (path) => {
     return fs
         .readdirSync(path)
         .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
-        .map((i, index) => {
+        .map((i) => {
          return {
-           id: index + 1,
            name: cleanName(i),
-           fileName: i,
-           rarity: addRarity(i),
+           path:  `${path}/${i}`,  
          };
         });
     };
@@ -48,54 +45,73 @@ const getElements = (path) => {
 
 const layers = [
     {
-    location: `${dir}/background/`,
-    elements: getElements(`${dir}/background/`),
+    elements: {
+        origin: getElements(`${dir}/ball/original`),
+        rare: getElements(`${dir}/ball/rare`),
+        super_rare: getElements(`${dir}/ball/super_rare`)
+    },
     position: {x:0, y:0},
     size: {width: width, height: height},
 },
 
 {
-    location: `${dir}/Bottom lid/`,
-    elements: getElements(`${dir}/Bottom lid/`),
+    elements: {
+        origin: getElements(`${dir}/eye color/original`),
+        rare: getElements(`${dir}/eye color/rare`),
+        super_rare: getElements(`${dir}/eye color/super_rare`)
+    },
     position: {x:0, y:0},
     size: {width: width, height: height},
 },
 
 {
-    location: `${dir}/Eye color/`,
-    elements: getElements(`${dir}/Eye color/`),
+    elements: {
+        origin: getElements(`${dir}/iris/original`),
+        rare: getElements(`${dir}/iris/rare`),
+        super_rare: getElements(`${dir}/iris/super_rare`)
+    },
+    position: {x:0, y:0},
+    size: {width: width, height: height},
+},
+{
+    elements: {
+        origin: getElements(`${dir}/shine/original`),
+        rare: getElements(`${dir}/shine/rare`),
+        super_rare: getElements(`${dir}/shine/super_rare`)
+    },
+    position: {x:0, y:0},
+    size: {width: width, height: height},
+},
+{
+    elements: {
+        origin: getElements(`${dir}/bottom lid/original`),
+        rare: getElements(`${dir}/bottom lid/rare`),
+        super_rare: getElements(`${dir}/bottom lid/super_rare`)
+    },
     position: {x:0, y:0},
     size: {width: width, height: height},
 },
 
 {
-    location: `${dir}/Eyeball/`,
-    elements: getElements(`${dir}/Eyeball/`),
-    position: {x:0, y:0},
-    size: {width: width, height: height},
-},
-
-{
-    location: `${dir}/Iris/`,
-    elements: getElements(`${dir}/Iris/`),
-    position: {x:0, y:0},
-    size: {width: width, height: height},
-},
-
-{
-    location: `${dir}/Shine/`,
-    elements: getElements(`${dir}/Shine/`),
-    position: {x:0, y:0},
-    size: {width: width, height: height},
-},
-
-{
-    location: `${dir}/Top lid/`,
-    elements: getElements(`${dir}/Top lid/`),
+    elements: {
+        origin: getElements(`${dir}/top lid/original`),
+        rare: getElements(`${dir}/top lid/rare`),
+        super_rare: getElements(`${dir}/top lid/super_rare`)
+    },
     position: {x:0, y:0},
     size: {width: width, height: height},
 },
 ];
 
 //console.log(layers, width);
-module.exports = {layers, width, height}
+module.exports = {
+    layers, 
+    width, 
+    height, 
+    description, 
+    baseImageUri, 
+    editionSize, 
+    startEditionFrom, 
+    endEditionAt,
+    rarityWeights,
+};
